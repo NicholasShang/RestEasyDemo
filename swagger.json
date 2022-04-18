@@ -11,6 +11,115 @@
         }
     ],
     "paths": {
+        "/m2i/schedule/schedule_templates/check-references": {
+            "post": {
+                "summary": "检查模板引用",
+                "x-apifox-folder": "schedule",
+                "x-apifox-status": "developing",
+                "deprecated": false,
+                "description": "",
+                "tags": [
+                    "schedule"
+                ],
+                "parameters": [
+                    {
+                        "name": "cookie",
+                        "in": "header",
+                        "description": "",
+                        "required": false,
+                        "example": "EIName=unknown; EIToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb3VudHJ5IjoiIiwiY3JlYXRpb25UaW1lIjoxNjQ4MTg2ODAwLCJleHAiOjE2NDgxOTA0MDAsImZpcnN0TmFtZSI6InVua25vd24iLCJpYXQiOjE2NDgxODY4MDAsImlkIjoiMGI1NmFkMmYtNDBkMC00M2M1LWE3ZWMtNzRjYTU3ZTg4ZmFhIiwiaXNzIjoid2lzZS1wYWFzIiwibGFzdE1vZGlmaWVkVGltZSI6MTYzOTA5OTcyOCwibGFzdE5hbWUiOiJ1bmtub3duIiwicmVmcmVzaFRva2VuIjoiYTdjNzNkYWUtMWUwMi00NzAyLThiZTAtYTlhYjYzYmVkOGJmIiwic3RhdHVzIjoiIiwidXNlcm5hbWUiOiJrYWlmZWkuc2hhbmdAYWR2YW50ZWNoLmNvbS5jbiJ9.Spi2wYfwcoEuPbk5iEGbXCD52rVquFebIQ5gnN17GOA; uiewrwnfqrytu=Bearer%20eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb3VudHJ5IjoiIiwiY3JlYXRpb25UaW1lIjoxNjQ4MTg2ODAwLCJleHAiOjE2NDgxOTA0MDAsImZpcnN0TmFtZSI6InVua25vd24iLCJpYXQiOjE2NDgxODY4MDAsImlkIjoiMGI1NmFkMmYtNDBkMC00M2M1LWE3ZWMtNzRjYTU3ZTg4ZmFhIiwiaXNzIjoid2lzZS1wYWFzIiwibGFzdE1vZGlmaWVkVGltZSI6MTYzOTA5OTcyOCwibGFzdE5hbWUiOiJ1bmtub3duIiwicmVmcmVzaFRva2VuIjoiYTdjNzNkYWUtMWUwMi00NzAyLThiZTAtYTlhYjYzYmVkOGJmIiwic3RhdHVzIjoiIiwidXNlcm5hbWUiOiJrYWlmZWkuc2hhbmdAYWR2YW50ZWNoLmNvbS5jbiJ9.Spi2wYfwcoEuPbk5iEGbXCD52rVquFebIQ5gnN17GOA",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "type": "integer"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "成功",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "result": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "references": {
+                                                        "type": "integer"
+                                                    },
+                                                    "id": {
+                                                        "type": "integer"
+                                                    },
+                                                    "referencesType": {
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "references",
+                                                    "id",
+                                                    "referencesType"
+                                                ]
+                                            }
+                                        },
+                                        "errorMessage": {
+                                            "type": "string"
+                                        },
+                                        "errorCode": {
+                                            "type": "integer"
+                                        },
+                                        "version": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "required": [
+                                        "result",
+                                        "errorMessage",
+                                        "errorCode",
+                                        "version"
+                                    ]
+                                },
+                                "examples": {
+                                    "1": {
+                                        "summary": "成功示例",
+                                        "value": {
+                                            "result": [
+                                                {
+                                                    "references": 4,
+                                                    "id": 48,
+                                                    "referencesType": "actions"
+                                                },
+                                                {
+                                                    "references": 1,
+                                                    "id": 49,
+                                                    "referencesType": "template"
+                                                }
+                                            ],
+                                            "errorMessage": "",
+                                            "errorCode": 0,
+                                            "version": "2.1.0"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/m2i/schedule/schedule_records": {
             "get": {
                 "summary": "查询排程记录",
@@ -1920,285 +2029,10 @@
                     }
                 }
             }
-        },
-        "/m2i/schedule/schedule_templates/check-references": {
-            "post": {
-                "summary": "检查模板引用",
-                "x-apifox-folder": "schedule",
-                "x-apifox-status": "developing",
-                "deprecated": false,
-                "description": "",
-                "tags": [
-                    "schedule"
-                ],
-                "parameters": [
-                    {
-                        "name": "cookie",
-                        "in": "header",
-                        "description": "",
-                        "required": false,
-                        "example": "EIName=unknown; EIToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb3VudHJ5IjoiIiwiY3JlYXRpb25UaW1lIjoxNjQ4MTg2ODAwLCJleHAiOjE2NDgxOTA0MDAsImZpcnN0TmFtZSI6InVua25vd24iLCJpYXQiOjE2NDgxODY4MDAsImlkIjoiMGI1NmFkMmYtNDBkMC00M2M1LWE3ZWMtNzRjYTU3ZTg4ZmFhIiwiaXNzIjoid2lzZS1wYWFzIiwibGFzdE1vZGlmaWVkVGltZSI6MTYzOTA5OTcyOCwibGFzdE5hbWUiOiJ1bmtub3duIiwicmVmcmVzaFRva2VuIjoiYTdjNzNkYWUtMWUwMi00NzAyLThiZTAtYTlhYjYzYmVkOGJmIiwic3RhdHVzIjoiIiwidXNlcm5hbWUiOiJrYWlmZWkuc2hhbmdAYWR2YW50ZWNoLmNvbS5jbiJ9.Spi2wYfwcoEuPbk5iEGbXCD52rVquFebIQ5gnN17GOA; uiewrwnfqrytu=Bearer%20eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb3VudHJ5IjoiIiwiY3JlYXRpb25UaW1lIjoxNjQ4MTg2ODAwLCJleHAiOjE2NDgxOTA0MDAsImZpcnN0TmFtZSI6InVua25vd24iLCJpYXQiOjE2NDgxODY4MDAsImlkIjoiMGI1NmFkMmYtNDBkMC00M2M1LWE3ZWMtNzRjYTU3ZTg4ZmFhIiwiaXNzIjoid2lzZS1wYWFzIiwibGFzdE1vZGlmaWVkVGltZSI6MTYzOTA5OTcyOCwibGFzdE5hbWUiOiJ1bmtub3duIiwicmVmcmVzaFRva2VuIjoiYTdjNzNkYWUtMWUwMi00NzAyLThiZTAtYTlhYjYzYmVkOGJmIiwic3RhdHVzIjoiIiwidXNlcm5hbWUiOiJrYWlmZWkuc2hhbmdAYWR2YW50ZWNoLmNvbS5jbiJ9.Spi2wYfwcoEuPbk5iEGbXCD52rVquFebIQ5gnN17GOA",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "type": "array",
-                                "items": {
-                                    "type": "integer"
-                                }
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "成功",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "result": {
-                                            "type": "array",
-                                            "items": {
-                                                "type": "object",
-                                                "properties": {
-                                                    "references": {
-                                                        "type": "integer"
-                                                    },
-                                                    "id": {
-                                                        "type": "integer"
-                                                    },
-                                                    "referencesType": {
-                                                        "type": "string"
-                                                    }
-                                                },
-                                                "required": [
-                                                    "references",
-                                                    "id",
-                                                    "referencesType"
-                                                ]
-                                            }
-                                        },
-                                        "errorMessage": {
-                                            "type": "string"
-                                        },
-                                        "errorCode": {
-                                            "type": "integer"
-                                        },
-                                        "version": {
-                                            "type": "string"
-                                        }
-                                    },
-                                    "required": [
-                                        "result",
-                                        "errorMessage",
-                                        "errorCode",
-                                        "version"
-                                    ]
-                                },
-                                "examples": {
-                                    "1": {
-                                        "summary": "成功示例",
-                                        "value": {
-                                            "result": [
-                                                {
-                                                    "references": 4,
-                                                    "id": 48,
-                                                    "referencesType": "actions"
-                                                },
-                                                {
-                                                    "references": 1,
-                                                    "id": 49,
-                                                    "referencesType": "template"
-                                                }
-                                            ],
-                                            "errorMessage": "",
-                                            "errorCode": 0,
-                                            "version": "2.1.0"
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
         }
     },
     "components": {
         "schemas": {
-            "CheckReferencesResult": {
-                "type": "object",
-                "properties": {
-                    "result": {
-                        "type": "array",
-                        "items": {
-                            "type": "object",
-                            "properties": {
-                                "references": {
-                                    "type": "integer"
-                                },
-                                "id": {
-                                    "type": "integer"
-                                },
-                                "referencesType": {
-                                    "type": "string"
-                                }
-                            },
-                            "required": [
-                                "references",
-                                "id",
-                                "referencesType"
-                            ]
-                        }
-                    },
-                    "errorMessage": {
-                        "type": "string"
-                    },
-                    "errorCode": {
-                        "type": "integer"
-                    },
-                    "version": {
-                        "type": "string"
-                    }
-                },
-                "required": [
-                    "result",
-                    "errorMessage",
-                    "errorCode",
-                    "version"
-                ],
-                "x-apifox-folder": "默认分组"
-            },
-            "Action": {
-                "type": "object",
-                "properties": {
-                    "templateComponentId": {
-                        "type": "integer"
-                    },
-                    "componentId": {
-                        "type": "integer"
-                    },
-                    "name": {
-                        "type": "string"
-                    },
-                    "description": {
-                        "type": "string"
-                    },
-                    "id": {
-                        "type": "integer"
-                    },
-                    "componentName": {
-                        "type": "string"
-                    },
-                    "templateId": {
-                        "type": "integer"
-                    },
-                    "orgId": {
-                        "type": "integer"
-                    },
-                    "content": {
-                        "type": "object",
-                        "properties": {
-                            "name": {
-                                "type": "string"
-                            },
-                            "description": {
-                                "type": "string"
-                            },
-                            "config": {
-                                "type": "object",
-                                "properties": {
-                                    "tagFrom": {
-                                        "type": "string"
-                                    },
-                                    "enable": {
-                                        "type": "boolean"
-                                    },
-                                    "control": {
-                                        "type": "object",
-                                        "properties": {
-                                            "sensorName": {
-                                                "type": "string"
-                                            },
-                                            "enable": {
-                                                "type": "boolean"
-                                            },
-                                            "value": {
-                                                "type": "string"
-                                            }
-                                        },
-                                        "required": [
-                                            "sensorName",
-                                            "enable",
-                                            "value"
-                                        ]
-                                    },
-                                    "interval": {
-                                        "type": "integer"
-                                    },
-                                    "tagInfo": {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "object",
-                                            "properties": {
-                                                "varType": {
-                                                    "type": "string"
-                                                },
-                                                "sensorName": {
-                                                    "type": "string"
-                                                },
-                                                "nodeId": {
-                                                    "type": "integer"
-                                                },
-                                                "value": {
-                                                    "type": "string"
-                                                }
-                                            },
-                                            "required": [
-                                                "varType",
-                                                "sensorName",
-                                                "nodeId",
-                                                "value"
-                                            ]
-                                        }
-                                    }
-                                },
-                                "required": [
-                                    "tagFrom",
-                                    "enable",
-                                    "control",
-                                    "interval",
-                                    "tagInfo"
-                                ]
-                            }
-                        },
-                        "required": [
-                            "name",
-                            "description",
-                            "config"
-                        ]
-                    }
-                },
-                "required": [
-                    "templateComponentId",
-                    "componentId",
-                    "name",
-                    "description",
-                    "id",
-                    "componentName",
-                    "templateId",
-                    "orgId",
-                    "content"
-                ],
-                "x-apifox-folder": "默认分组"
-            },
             "ScheduleRecordResponse": {
                 "type": "object",
                 "properties": {
@@ -2806,69 +2640,6 @@
                     "errorCode",
                     "scheduleRecords",
                     "version"
-                ],
-                "x-apifox-folder": "默认分组"
-            },
-            "ScheduleTemplate": {
-                "type": "object",
-                "properties": {
-                    "creator": {
-                        "type": "string"
-                    },
-                    "description": {
-                        "type": "string"
-                    },
-                    "type": {
-                        "type": "string"
-                    },
-                    "gmt_modified": {
-                        "type": "string"
-                    },
-                    "light_color": {
-                        "type": "string"
-                    },
-                    "device_profile_id": {
-                        "type": "integer"
-                    },
-                    "org_id": {
-                        "type": "integer"
-                    },
-                    "name": {
-                        "type": "string"
-                    },
-                    "dark_color": {
-                        "type": "string"
-                    },
-                    "id": {
-                        "type": "integer"
-                    },
-                    "actions": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/Action"
-                        }
-                    },
-                    "gmt_created": {
-                        "type": "string"
-                    },
-                    "status": {
-                        "type": "boolean"
-                    }
-                },
-                "required": [
-                    "creator",
-                    "description",
-                    "type",
-                    "gmt_modified",
-                    "light_color",
-                    "device_profile_id",
-                    "org_id",
-                    "name",
-                    "dark_color",
-                    "id",
-                    "actions",
-                    "gmt_created",
-                    "status"
                 ],
                 "x-apifox-folder": "默认分组"
             },
